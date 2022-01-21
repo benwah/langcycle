@@ -8,7 +8,7 @@ import sys
 logging.basicConfig(level=logging.INFO)
 
 
-def main(layouts):
+def cycle_layout(layouts):
     layout = os. \
         popen("setxkbmap -query | grep layout | awk '{ print $2 }'"). \
         read(). \
@@ -49,7 +49,7 @@ Cycles through keyboard layouts and variants using setxkbmap.
 example: langycycle.py us fr ca:eng ca:fr ca:multi""")
 
 
-if __name__ == '__main__':
+def main():
     if len(sys.argv[1:]) == 0 or sys.argv[1] in ('help', '-h', '--help'):
         help()
         sys.exit()
@@ -59,4 +59,7 @@ if __name__ == '__main__':
         sys.argv[1:]
     )
 
-    main(list(layouts))
+    cycle_layout(list(layouts))
+
+if __name__ == '__main__':
+    main()
